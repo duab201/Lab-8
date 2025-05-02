@@ -15,7 +15,14 @@ def choose_difficulty():
     - str: Valid difficulty levels are ('easy', 'medium', 'hard').
     """
     #------------------------
-    # Add your code here
+    level = ['easy', 'medium', 'hard']
+    print('Choose the difficulty level of the questions')
+    print('Difficulty levels are easy, medium and hard')
+    difficulty = input()
+    if difficulty not in level:
+        print('Invalid Difficulty')
+    else:
+        return difficulty
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -34,7 +41,17 @@ def display_leaderboard(leaderboard):
     The function sorts the leaderboard by scores in descending order and prints the names and scores of the top players. If the leaderboard is empty, it prints a message indicating that there are no scores to display.
     """
     #------------------------
-    # Add your code here
+    my_list = []
+    if leaderboard == '':
+        print('No scores to display')
+    else:
+        for key, value in leaderboard.item():
+            my_list.append(value)
+        my_list = my_list.sort(reverse = True)
+        for a in my_list:
+            print(a)
+    
+        
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -53,7 +70,9 @@ def save_score(player_name, score, file_path='scores.txt'):
     Returns: None
     """
     #------------------------
-    # Add your code here
+    with open('scores.txt', 'w') as file:
+        file.write(f'{player_name}, : , {score}')
+    file.close
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -71,7 +90,11 @@ def load_top_scores(file_path='scores.txt'):
     - dict: The leaderboard dictionary with player names as keys and scores as values.
     """
     #------------------------
-    # Add your code here
+    my_dict = {}
+    with open('scores.txt', 'r') as file:
+        for line in file:
+            name, score = line.strip.split(':')
+            my_dict[name] = score
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
@@ -92,7 +115,10 @@ def provide_feedback(is_correct):
     - is it incorrect? "Sorry, that's incorrect."
     """
     #------------------------
-    # Add your code here
+    if is_correct:
+        print('Well done')
+    else:
+        print('Sorry, that is incorrect')
     #------------------------
     raise NotImplementedError("This function is not implemented yet.")
     #------------------------
